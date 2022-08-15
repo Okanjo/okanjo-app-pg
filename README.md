@@ -31,7 +31,7 @@ const { PostgresService } = require('okanjo-app-pg');
 ## Properties
 * `service.app` – (read-only) The OkanjoApp instance provided when constructed
 * `service.config` – (read-only) The Postgres service configuration provided when constructed
-* `service.pool` – (read-only) The underlying [postgres) connection pool](https://node-postgres.com/features/pooling
+* `service.pool` – (read-only) The underlying [postgres connection pool](https://node-postgres.com/features/pooling)
 
 ## Methods
 
