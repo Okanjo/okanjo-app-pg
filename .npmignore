@@ -1,0 +1,9 @@
+test
+*.tgz
+coverage
+.nyc_output
+.idea
+docs
+.eslint*
+.travis.yml
+.github

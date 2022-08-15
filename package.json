@@ -1,0 +1,104 @@
+{
+  "name": "okanjo-app-pg",
+  "version": "1.0.0",
+  "description": "Service for interfacing with Postgres",
+  "main": "PostgresService.js",
+  "scripts": {
+    "clean": "rm -rf .nyc_output coverage",
+    "test": "node_modules/.bin/mocha -R spec test",
+    "cover": "node_modules/.bin/nyc node_modules/mocha/bin/_mocha --exit",
+    "lint": "node_modules/.bin/eslint .",
+    "report": "npm run cover && npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/okanjo/okanjo-app-pg.git"
+  },
+  "keywords": [
+    "Okanjo",
+    "OkanjoApp",
+    "Postgres",
+    "Database"
+  ],
+  "author": "Okanjo Partners Inc",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.21.0",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
+    "okanjo-app": "^3.2.1",
+    "should": "^13.2.3"
+  },
+  "peerDependencies": {
+    "okanjo-app": ">=3"
+  },
+  "dependencies": {
+    "base-id": "^3.1.0",
+    "debug": "^4.3.4",
+    "pg": "^8.7.3"
+  },
+  "mocha": {
+    "require": [
+      "should",
+      "./test/env.js"
+    ],
+    "reporter": "spec",
+    "checkLeaks": true,
+    "timeout": 1000
+  },
+  "nyc": {
+    "reporter": [
+      "text-summary",
+      "html",
+      "lcovonly"
+    ]
+  },
+  "eslintConfig": {
+    "ignorePatterns": [
+      "/node_modules/**",
+      "/coverage/**",
+      "/.nyc_output/**"
+    ],
+    "env": {
+      "es2020": true,
+      "es6": true,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module"
+    },
+    "plugins": [],
+    "extends": "eslint:recommended",
+    "globals": {
+      "require": true,
+      "module": true,
+      "describe": true,
+      "it": true,
+      "before": true,
+      "after": true,
+      "afterEach": true,
+      "Promise": true
+    },
+    "overrides": [
+      {
+        "files": [
+          "docs/**"
+        ],
+        "rules": {
+          "no-console": "off",
+          "no-unused-vars": "off"
+        }
+      },
+      {
+        "files": [
+          "test/*.js"
+        ],
+        "parserOptions": {
+          "sourceType": "script",
+          "no-console": "off"
+        }
+      }
+    ]
+  }
+}
