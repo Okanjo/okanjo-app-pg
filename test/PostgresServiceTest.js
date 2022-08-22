@@ -4,7 +4,7 @@ const should = require('should');
 
 describe('PostgresService', () => {
 
-    const PostgresService = require('../PostgresService');
+    const { PostgresService } = require('../');
     const OkanjoApp = require('okanjo-app');
     const config = require('./config');
 

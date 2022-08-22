@@ -1,8 +1,8 @@
 {
   "name": "okanjo-app-pg",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Service for interfacing with Postgres",
-  "main": "PostgresService.js",
+  "main": "index.js",
   "scripts": {
     "clean": "rm -rf .nyc_output coverage",
     "test": "node_modules/.bin/mocha -R spec test",
