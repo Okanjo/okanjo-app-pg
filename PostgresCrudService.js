@@ -441,7 +441,7 @@ class PostgresCrudService {
         this._applyUpdates(doc, data);
 
         // Ensure when you update an object, no matter what it is, we update our auditing field
-        if (this.updatedField) doc.updated = new Date();
+        if (this.updatedField) doc[this.updatedField] = new Date();
 
         // Make sure we know what we are updating!
         if (doc[this.idField] === undefined) {
@@ -485,7 +485,7 @@ class PostgresCrudService {
         criteria = criteria || {};
 
         // Automatically bump updated time on matched records if configured to do so
-        if (this.updatedField) data.updated = new Date();
+        if (this.updatedField) data[this.updatedField] = new Date();
 
         const args = [];
         const setData = Object.assign({}, data);
