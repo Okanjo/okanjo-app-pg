@@ -670,6 +670,20 @@ describe('PostgresCrudService', () => {
             docs.length.should.be.exactly(1); // a
         });
 
+        it('should handle special operator: $eqi', async () => {
+            const docs = await crud.find({ id: { $eqi: 'A' } });
+            should(docs).be.ok();
+
+            docs.length.should.be.exactly(1); // a
+        });
+
+        it('should handle special operator: $nei', async () => {
+            const docs = await crud.find({ id: { $nei: 'A' } });
+            should(docs).be.ok();
+
+            docs.length.should.be.exactly(2); // b, c
+        });
+
         it('should warn when you are crazy', async () => {
             const docs = await crud.find({ created: { $crazy: 'yes' } });
             should(docs).be.ok();

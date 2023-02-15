@@ -352,28 +352,47 @@ class PostgresCrudService {
                 // Value is an object, try to keep some similarity here between mongo
                 const startingWhereLength = where.length;
 
+                // { field: { $ne: value } }
                 if (value.$ne) {
                     this._buildCriteria({ [field]: value.$ne }, where, args, false);
                 }
 
+                // { field: { $gt: value } }
                 if (value.$gt) {
                     where.push(`"${field}" > $${args.length+1}`);
                     args.push(value.$gt);
                 }
 
+                // { field: { $gte: value } }
                 if (value.$gte) {
                     where.push(`"${field}" >= $${args.length+1}`);
                     args.push(value.$gte);
                 }
 
+                // { field: { $lt: value } }
                 if (value.$lt) {
                     where.push(`"${field}" < $${args.length+1}`);
                     args.push(value.$lt);
                 }
 
+                // { field: { $lte: value } }
                 if (value.$lte) {
                     where.push(`"${field}" <= $${args.length+1}`);
                     args.push(value.$lte);
+                }
+
+                // case-insensitive equals
+                // { field: { $eqi: value } }
+                if (value.$eqi) {
+                    where.push(`LOWER("${field}") = LOWER($${args.length+1})`);
+                    args.push(value.$eqi);
+                }
+
+                // case-insensitive not-equals
+                // { field: { $nei: value } }
+                if (value.$nei) {
+                    where.push(`LOWER("${field}") != LOWER($${args.length+1})`);
+                    args.push(value.$nei);
                 }
 
                 if (startingWhereLength === where.length) {
